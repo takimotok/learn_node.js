@@ -15,8 +15,10 @@ EXPOSE 3000
 # git: for watch mode in Jest
 RUN apk upgrade --no-cache && \
     apk add --update --no-cache \
+    bash \
     curl \
-    git
+    git \
+    vim
 
 # set npm to install dependencies globally
 # cf.) BestPractices.md
@@ -40,12 +42,5 @@ RUN echo "WORKDIR is $WORKDIR" && \
 # -----
 FROM base as dev
 ENV NODE_ENV=development
-
-# RUN npm ci
-
-# test
-# -----
-FROM dev as test
-ENV NODE_ENV=test
 
 # RUN npm ci
